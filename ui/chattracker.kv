@@ -1,0 +1,106 @@
+#:include ui/ui_defs.kv
+
+
+ScreenManagement:
+    FeedScreen:
+    SettingsScreen:
+
+
+<FeedScreen>:
+    name: 'feed'
+    BoxLayout:
+        id: feedScreen
+        orientation: 'vertical'
+        canvas:
+            Color:
+                rgb: 0, 0, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        GridLayout:
+            cols: 3
+            size_hint: 1, None
+            height: 50
+            TitleLabel:
+                text: 'Chat Tracker'
+                size_hint: 1, 1
+
+            MainSwitch:
+
+            IconButton:
+                source: 'icons/settings.png'
+                size_hint: None, 1
+                width: 50
+                on_press:
+                    root.manager.current = 'settings'
+                    root.manager.transition.direction = 'left'
+
+        GridLayout:
+            cols: 1
+            padding: 30, 20
+            spacing: 10, 10
+
+            GenericLabel:
+                text: 'Log output:'
+                valign: 'bottom'
+
+            ChatLabel:
+                text: 'test\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest'
+
+
+
+
+<SettingsScreen>:
+    name: 'settings'
+    BoxLayout:
+        id: settingsScreen
+        canvas:
+            Color:
+                rgb: 0, 0, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        IconButton:
+            source: 'icons/arrow.png'
+            size: 50, 50
+            size_hint: None, None
+            height: root.height
+            width: 50
+            on_press:
+                root.manager.current = 'feed'
+                root.manager.transition.direction = 'right'
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            TitleLabel:
+                text: 'Settings'
+                size_hint_y: None
+                height: 50
+
+            GridLayout:
+                cols: 2
+                padding: 30, 20
+                spacing: 10, 10
+                size_hint: 1, None
+
+                SettingsLabel:
+                    text: 'Console log path:'
+                BoxLayout:
+                    spacing: 10
+                    GenericInput:
+                    GenericButton:
+                        text: 'Browse'
+
+                SettingsLabel:
+                    text: 'Report string:'
+                GenericInput:
+
+                SettingsLabel:
+                    text: 'Nickname string:'
+                GenericInput:
+
+            Widget:
+                size_hint: 1, 1

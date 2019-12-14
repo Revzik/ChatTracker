@@ -24,14 +24,17 @@ event_shoutout = "shoutout"
 def read_lines(file):
     file.seek(0, 2)
     while True:
-        line = file.readline()
-        if not line or (nick_string + ":" in line):
-            time.sleep(0.01)
-            continue
-        elif accident_string in line:
-            yield event_accident
-        elif nick_string.lower() in line.lower():
-            yield event_shoutout
+        try:
+            line = file.readline()
+            if not line or (nick_string + ":" in line):
+                time.sleep(0.01)
+                continue
+            elif accident_string in line:
+                yield event_accident
+            elif nick_string.lower() in line.lower():
+                yield event_shoutout
+        except Exception as e:
+            print("ERROR - " + str(e))
 
 
 def play_sound(path):

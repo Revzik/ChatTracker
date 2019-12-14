@@ -1,0 +1,80 @@
+<BackgroundColor@Widget>
+    background_color: 0, 0, 0, 1
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+
+<Icon@Image+BackgroundColor>:
+    size: self.texture_size
+    background_color: .05, .1, .2, 1
+
+
+<IconButton@ButtonBehavior+Image+BackgroundColor>
+    size: self.texture_size
+    background_color: .05, .1, .2, 1
+
+
+<GenericButton@Button>:
+    font_size: 16
+    size_hint: None, None
+    height: 30
+    width: 100
+    halign: 'center'
+    valing: 'center'
+
+
+<MainSwitch@Switch+BackgroundColor>:
+    font_size: 16
+    size_hint: None, None
+    height: 50
+    width: 100
+    halign: 'center'
+    valing: 'center'
+    background_color: .05, .1, .2, 1
+
+
+<TitleLabel@Label+BackgroundColor>:
+    font_size: 24
+    text_size: self.size
+    halign: 'left'
+    valign: 'middle'
+    padding: 15, 0
+    background_color: .05, .1, .2, 1
+
+
+<GenericLabel@Label+BackgroundColor>:
+    font_size: 16
+    text_size: self.size
+    size_hint: None, None
+    height: 30
+    halign: 'left'
+    valign: 'middle'
+
+
+<SettingsLabel@Label+BackgroundColor>:
+    font_size: 16
+    text_size: self.size
+    size_hint: None, None
+    size: 150, 30
+    halign: 'left'
+    valign: 'middle'
+
+
+<ChatLabel@Label+BackgroundColor>:
+    font_size: 16
+    text_size: self.size
+    size_hint: 1, 1
+    halign: 'left'
+    valign: 'bottom'
+    background_color: .1, .1, .1, 1
+
+
+<GenericInput@TextInput>
+    font_size: 16
+    size_hint: 1, None
+    height: 30
+
