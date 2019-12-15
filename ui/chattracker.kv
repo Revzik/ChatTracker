@@ -7,9 +7,9 @@ ScreenManagement:
 
 
 <FeedScreen>:
+    id: feedScreen
     name: 'feed'
     BoxLayout:
-        id: feedScreen
         orientation: 'vertical'
         canvas:
             Color:
@@ -52,9 +52,10 @@ ScreenManagement:
 
 
 <SettingsScreen>:
+    id: settingsScreen
     name: 'settings'
+
     BoxLayout:
-        id: settingsScreen
         canvas:
             Color:
                 rgb: 0, 0, 0, 1
@@ -63,6 +64,7 @@ ScreenManagement:
                 size: self.size
 
         IconButton:
+            id: back_button
             source: 'icons/arrow.png'
             size: 50, 50
             size_hint: None, None
@@ -71,6 +73,7 @@ ScreenManagement:
             on_press:
                 root.manager.current = 'feed'
                 root.manager.transition.direction = 'right'
+                settingsScreen.save(path_entry.text, report_entry.text, mention_entry.text)
 
         BoxLayout:
             orientation: 'vertical'
@@ -91,16 +94,19 @@ ScreenManagement:
                 BoxLayout:
                     spacing: 10
                     GenericInput:
+                        id: path_entry
                     GenericButton:
                         text: 'Browse'
 
                 SettingsLabel:
                     text: 'Report string:'
                 GenericInput:
+                    id: report_entry
 
                 SettingsLabel:
                     text: 'Nickname string:'
                 GenericInput:
+                    id: mention_entry
 
             Widget:
                 size_hint: 1, 1

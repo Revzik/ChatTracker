@@ -6,47 +6,30 @@
 # Theese functions are used to read and filter a text file
 
 import time
-from playsound import playsound
 
 
-accident_string = "Nowy raport - autor"
-nick_string = "Revzik"
+class FileReader:
 
-log_location = "D:\\Games\\MTA\\MTA\\logs\\console.log"
+    accident_string = ''
+    nick_string = ''
 
-audio_accident = "audio\\accident.wav"
-audio_shoutout = "audio\\shoutout.wav"
+    log_location = ''
 
-event_accident = "accident"
-event_shoutout = "shoutout"
+    audio_accident = ''
+    audio_mention = ''
 
+    event_accident = 'accident'
+    event_mention = 'shoutout'
 
-def read_lines(file):
-    file.seek(0, 2)
-    while True:
+    def read_lines(self, file):
+        file.seek(0, 2)
         try:
             line = file.readline()
-            if not line or (nick_string + ":" in line):
+            if not line or (self.nick_string + ":" in line):
                 time.sleep(0.01)
-                continue
-            elif accident_string in line:
-                yield event_accident
-            elif nick_string.lower() in line.lower():
-                yield event_shoutout
+            elif self.accident_string in line:
+                yield self.event_accident
+            elif self.nick_string.lower() in line.lower():
+                yield self.event_mention
         except Exception as e:
-            print("ERROR - " + str(e))
-
-
-def play_sound(path):
-    playsound(path)
-
-
-if __name__ == '__main__':
-    logfile = open(log_location, "r")
-    events = read_lines(logfile)
-    for event in events:
-        print(event)
-        if event == event_accident:
-            play_sound(audio_accident)
-        elif event == event_shoutout:
-            play_sound(audio_shoutout)
+            print('ERROR - ' + str(e))
